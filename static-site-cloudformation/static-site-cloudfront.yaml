@@ -1,0 +1,101 @@
+AWSTemplateFormatVersion: "2010-09-09"
+Description: Create codepipeline
+Parameters:
+  S3StaticSiteBucketName:
+    Type: String
+    Description: S3Bucket name for static site hosting
+    Default: static-site-575758
+  S3LoggingBucketName:
+    Type: String
+    Description: S3Bucket name for storing logs
+    Default: static-site-bucket-4646464646
+  Region:
+    Type: String
+    Description: Default Region for s3 bucket
+    Default: us-east-1
+Resources:
+  WebSiteDeploymentBucket:
+    Type: AWS::S3::Bucket
+    Properties:
+      BucketName: !Ref S3StaticSiteBucketName
+  LoggingBucket:
+    Type: AWS::S3::Bucket
+    Properties:
+      BucketName: !Ref S3LoggingBucketName
+  cloudfrontoriginaccessidentity:
+    Type: AWS::CloudFront::CloudFrontOriginAccessIdentity
+    Properties:
+      CloudFrontOriginAccessIdentityConfig:
+        Comment: 
+          Fn::Sub: ${S3StaticSiteBucketName}-AccessIdentity
+  
+  DeploymentBucketPolicy:
+    Type: 'AWS::S3::BucketPolicy'
+    Properties:
+      Bucket: 
+        Ref: S3StaticSiteBucketName
+      PolicyDocument:
+        Statement:
+          - Effect: Allow
+            Principal:
+              CanonicalUser:
+                Fn::GetAtt: [ cloudfrontoriginaccessidentity , S3CanonicalUserId ]
+            Action: "s3:GetObject"
+            Resource: !Join
+              - ''
+              - - 'arn:aws:s3:::'
+                - !Ref S3StaticSiteBucketName
+                - /*
+  CloudFront:
+    Type: AWS::CloudFront::Distribution
+    Properties: 
+      DistributionConfig: 
+        Origins:
+          - DomainName: 
+              Fn::Sub: ${S3StaticSiteBucketName}.s3.${Region}.amazonaws.com
+            Id: S3Origin
+            S3OriginConfig:
+              OriginAccessIdentity: 
+                Fn::Join:
+                  - ""
+                  - - 'origin-access-identity/cloudfront/'
+                    - Ref: cloudfrontoriginaccessidentity
+        Comment: 
+          Fn::Sub: '${S3StaticSiteBucketName}'
+        DefaultRootObject: index.html
+        Enabled: True
+        DefaultCacheBehavior:
+          AllowedMethods:
+          - DELETE
+          - GET
+          - HEAD
+          - OPTIONS
+          - PATCH
+          - POST
+          - PUT
+          TargetOriginId: S3Origin
+          ForwardedValues:
+            QueryString: 'false'
+            Cookies:
+              Forward: none
+          ViewerProtocolPolicy: redirect-to-https
+        HttpVersion: http2
+        ViewerCertificate:
+          CloudFrontDefaultCertificate: 'true'
+        Logging:
+          IncludeCookies: 'false'
+          Bucket: 
+            Fn::Sub: ${S3LoggingBucketName}.s3.${Region}.amazonaws.com
+          Prefix: logs
+
+
+Outputs:
+  CloudFrontDistributionID:
+    Description: 'CloudFront distribution ID'
+    Value: 
+      Ref: CloudFront
+  CloudFrontDomainName:
+    Description: CloudFront Domain Name
+    Value: 
+      Fn::GetAtt: [ CloudFront, DomainName ]
+

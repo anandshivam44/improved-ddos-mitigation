@@ -1,0 +1,23 @@
+git config --global user.name "Shivam Anand"
+git config --global user.email "anand.shivam44@yahoo.com"
+eval $(ssh-agent -s)
+ssh-add work_key 
+git clone -b update-readme git@github.com:anandshivam44/improved-ddos-mitigation.git
+sudo docker rm -vf $(docker ps -a -q)
+sudo docker rmi -f $(docker images -a -q)
+sam build --use-container
+sam deploy --guided
+ab  -c 100 -n 2000 https://d4nlbe9pxnxvk.cloudfront.net/
+sam build --use-container ; sam deploy --no-confirm-changeset;
+
+Turn on realtime log configuration in cloudfront
+Attach static site in WAF
+
+
+Cloud 9
+host = d4nlbe9pxnxvk.cloudfront.net
+distribution = d4nlbe9pxnxvk.cloudfront.net
+duration 1m
+threshold 20
+
+remove xff from query string 

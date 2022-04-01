@@ -1,6 +1,0 @@
-# first time deployment
-sam build --use-container
-sam deploy --guided
-
-# most used cmds
-sam validate && sam build --use-container && sam deploy

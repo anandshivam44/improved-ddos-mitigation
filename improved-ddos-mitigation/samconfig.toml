@@ -1,0 +1,12 @@
+version = 0.1
+[default]
+[default.deploy]
+[default.deploy.parameters]
+stack_name = "waf-automation"
+s3_bucket = "aws-sam-cli-managed-default-samclisourcebucket-1t134f315w24"
+s3_prefix = "waf-automation"
+region = "us-east-1"
+capabilities = "CAPABILITY_IAM"
+parameter_overrides = "KinesisStreamShards=\"2\" RealtimeLogsSamplingPercentage=\"100\" EmailAddress=\"anand.shivam44@yahoo.com\""
+confirm_changeset = true
+image_repositories = []

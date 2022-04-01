@@ -1,0 +1,73 @@
+    1  ls
+    2  git 
+    3  git config --global user.name "Shivam Anand"
+    4  git config --global user.email "anand.shivam44@yahoo.com"
+    5  ls
+    6  eval $(ssh-agent -s)
+    7  ssh-add work_key 
+    8  sudo chmod 400
+    9  sudo chmod 400 work_key 
+   10  ssh-add work_key 
+   11  clear
+   12  ssh-keygen -t rsa -b 4096
+   13  eval $(ssh-agent -s)
+   14  ssh-add id_rsa
+   15  git clone -b update-readme git@github.com:anandshivam44/improved-ddos-mitigation.git
+   16  cd improved-ddos-mitigation/
+   17  docker
+   18  docker --version
+   19  sam
+   20  sam --version
+   21  clear
+   22  docker ls -la
+   23  docker ls 
+   24  docker ps
+   25  docker ps -a
+   26  docker images
+   27  sudo docker rm -vf $(docker ps -a -q)
+   28  # Remove all Docker Images locally
+   29  sudo docker rmi -f $(docker images -a -q)
+   30  docker images
+   31  sam build --use-container
+   32  sam deploy --guided
+   33  history
+   34  sam build --use-container
+   35  sam deploy
+   36  sam build --use-container ; sam deploy ;
+   37  sam deploy
+   38  sam build --use-container ; sam deploy ;
+   39  ab
+   40  ab  -c 100 -n 2000 https://d4nlbe9pxnxvk.cloudfront.net/
+   41  curl 2000 https://d4nlbe9pxnxvk.cloudfront.net/
+   42  clear
+   43  curl 2000 https://d4nlbe9pxnxvk.cloudfront.net/
+   44  ab  -c 100 -n 2000 https://d4nlbe9pxnxvk.cloudfront.net/
+   45  curl  https://d4nlbe9pxnxvk.cloudfront.net/
+   46  curl  https://d4nlbe9pxnxvk.cloudfront.net
+   47  curl ifconfig.me
+   48  curl  https://d4nlbe9pxnxvk.cloudfront.net
+   49  ab  -c 100 -n 2000 https://d4nlbe9pxnxvk.cloudfront.net/
+   50  curl  https://d4nlbe9pxnxvk.cloudfront.net
+   51  sam build --use-container ; sam deploy ;
+   52  clear
+   53  ab  -c 100 -n 2000 https://d4nlbe9pxnxvk.cloudfront.net/
+   54  curl  https://d4nlbe9pxnxvk.cloudfront.net
+   55  sam build --use-container ; sam deploy ;
+   56  ab  -c 100 -n 2000 https://d4nlbe9pxnxvk.cloudfront.net/
+   57  curl  https://d4nlbe9pxnxvk.cloudfront.net
+   58  ab  -c 100 -n 2000 https://d4nlbe9pxnxvk.cloudfront.net/
+   59  sam build --use-container ; sam deploy ;
+   60  sam deploy 
+   61  sam deploy --help
+   62  sam deploy --no-confirm-changeset
+   63  ab  -c 100 -n 2000 https://d4nlbe9pxnxvk.cloudfront.net/
+   64  curl  https://d4nlbe9pxnxvk.cloudfront.net
+   65  clear
+   66  histry
+   67  history
+   68  sam build --use-container ; sam deploy --no-confirm-changeset;
+   69  ab  -c 100 -n 2000 https://d4nlbe9pxnxvk.cloudfront.net/
+   70  sam build --use-container ; sam deploy --no-confirm-changeset;
+   71  ab  -c 100 -n 2000 https://d4nlbe9pxnxvk.cloudfront.net/
+   72  curl  https://d4nlbe9pxnxvk.cloudfront.net
+   73  history > history.txt
